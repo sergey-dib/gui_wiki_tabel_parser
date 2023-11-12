@@ -11,8 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from parse_wiki_table import start_parse
 
+from res.layout.tablet_layout import TabletViewWindow
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        # Another pages
+        self.TabletWindow = TabletViewWindow()
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(841, 674)
         icon = QtGui.QIcon()
@@ -40,7 +46,7 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.buttonGetTables.setFont(font)
         self.buttonGetTables.setObjectName("buttonGetTables")
-        self.buttonGetTables.clicked.connect(lambda : start_parse(self.url_adress.text()))
+        self.buttonGetTables.clicked.connect(lambda: start_parse(self.url_adress.text(), self.TabletWindow))
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -54,4 +60,3 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Wikipedia table parser"))
         self.nameApp.setText(_translate("MainWindow", "Wikipedia table parser"))
         self.buttonGetTables.setText(_translate("MainWindow", "Получить"))
-
